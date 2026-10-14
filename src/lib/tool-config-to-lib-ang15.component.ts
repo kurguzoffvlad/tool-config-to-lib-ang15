@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'lib-tool-config-to-lib-ang15',
   template: `
     <p>
-      tool-config-to-lib-ang15 works!
+      tool-config-to-lib-ang15 works!!!
     </p>
   `,
   styles: [
