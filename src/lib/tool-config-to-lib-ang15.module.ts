@@ -2,7 +2,7 @@ import {ModuleWithProviders, NgModule} from '@angular/core';
 
 import { ToolConfigToLibAng15RoutingModule } from './tool-config-to-lib-ang15-routing.module';
 import {ToolConfigToLibAng15Component} from './tool-config-to-lib-ang15.component';
-import {IConfigToLib, LIB_CONFIG} from "./config.token";
+import {IConfigToLib, LIB_CONFIG} from "./config/config.token";
 
 
 @NgModule({
