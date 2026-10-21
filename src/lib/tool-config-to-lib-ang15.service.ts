@@ -11,6 +11,8 @@ export class ToolConfigToLibAng15Service {
 
     public doSomething() {
         this.cfg.log('called');
+
         return this.cfg.apiUrl;
     }
 }
+
