@@ -64,7 +64,7 @@ tool-config-to-lib-ang15/
 ### 1. Создайте конфиг
 
 ```ts
-// tool-config-to-lib.interface.ts
+// tool-config-to-lib.config.ts
 import { IConfigToLib } from 'tool-config-to-lib-ang15';
 
 export const configFromApp: IConfigToLib = {

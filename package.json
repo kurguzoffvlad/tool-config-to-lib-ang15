@@ -1,6 +1,6 @@
 {
     "name": "tool-config-to-lib-ang15",
-    "version": "0.0.14",
+    "version": "0.0.15",
     "peerDependencies": {
         "@angular/common": "^15.2.0",
         "@angular/core": "^15.2.0"
