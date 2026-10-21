@@ -6,11 +6,11 @@ import {IConfigToLib, LIB_CONFIG} from "./config.token";
 })
 export class ToolConfigToLibAng15Service {
 
-    constructor(@Inject(LIB_CONFIG) private cfg: IConfigToLib) {
+    constructor(@Inject(LIB_CONFIG) public cfg: IConfigToLib) {
     };
 
     public doSomething() {
-        this.cfg.log('called');
+        this.cfg.log('Из библиотеки');
 
         return this.cfg.apiUrl;
     }
