@@ -1,5 +1,5 @@
-import {Inject, Injectable} from '@angular/core';
-import {IConfigToLib, LIB_CONFIG} from "./config.token";
+import { Inject, Injectable } from '@angular/core';
+import { IConfigToLib, LIB_CONFIG } from "./config.token";
 
 @Injectable({
 	providedIn: 'root'

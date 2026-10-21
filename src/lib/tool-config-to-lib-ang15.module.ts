@@ -1,6 +1,6 @@
-import {ModuleWithProviders, NgModule} from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 
-import {IConfigToLib, LIB_CONFIG} from "./config.token";
+import { IConfigToLib, LIB_CONFIG } from "./config.token";
 
 
 @NgModule({
@@ -12,7 +12,7 @@ export class ToolConfigToLibAng15Module {
 	static forRoot(config: IConfigToLib): ModuleWithProviders<ToolConfigToLibAng15Module> {
 		return {
 			ngModule: ToolConfigToLibAng15Module,
-			providers: [{provide: LIB_CONFIG, useValue: config}]
+			providers: [{ provide: LIB_CONFIG, useValue: config }]
 		};
 	}
 }
