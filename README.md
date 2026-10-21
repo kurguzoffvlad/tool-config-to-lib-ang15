@@ -31,6 +31,7 @@ npm install tool-config-to-lib-ang15
 Селектор компонента: `lib-tool-config-to-lib-ang15`.
 
 ```html
+
 <lib-tool-config-to-lib-ang15></lib-tool-config-to-lib-ang15>
 ```
 
@@ -65,46 +66,47 @@ tool-config-to-lib-ang15/
 
 ```ts
 // tool-config-to-lib.config.ts
-import { IConfigToLib } from 'tool-config-to-lib-ang15';
+import {IConfigToLib} from 'tool-config-to-lib-ang15';
 
 export const configFromApp: IConfigToLib = {
-    apiUrl: 'https://api.example.com',
-    log: (m: any) => console.log('!!! Из приложения конфиг - ', m)
+	apiUrl: 'https://api.example.com',
+	log: (m: any) => console.log('!!! Из приложения конфиг - ', m)
 };
 ```
 
 ### 2. Подключите модуль с конфигом
 
 ```ts
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { ToolConfigToLibAng15Module } from 'tool-config-to-lib-ang15';
-import { AppComponent } from './app.component';
-import { configFromApp } from './tool-config-to-lib.interface';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {ToolConfigToLibAng15Module} from 'tool-config-to-lib-ang15';
+import {AppComponent} from './app.component';
+import {configFromApp} from './tool-config-to-lib.interface';
 
 @NgModule({
-    declarations: [AppComponent],
-    imports: [
-        BrowserModule,
-        ToolConfigToLibAng15Module.forRoot(configFromApp)
-    ],
-    bootstrap: [AppComponent]
+	declarations: [AppComponent],
+	imports: [
+		BrowserModule,
+		ToolConfigToLibAng15Module.forRoot(configFromApp)
+	],
+	bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+}
 ```
 
 ### 3. Используйте сервис
 
 ```ts
-import { Component } from '@angular/core';
-import { ToolConfigToLibAng15Service } from 'tool-config-to-lib-ang15';
+import {Component} from '@angular/core';
+import {ToolConfigToLibAng15Service} from 'tool-config-to-lib-ang15';
 
-@Component({ /* ... */ })
+@Component({ /* ... */})
 export class MyComponent {
-    constructor(private lib: ToolConfigToLibAng15Service) {
-        const url = this.lib.doSomething();
-        // url === 'https://api.example.com'
-    }
+	constructor(private lib: ToolConfigToLibAng15Service) {
+		const url = this.lib.doSomething();
+		// url === 'https://api.example.com'
+	}
 }
 ```
 
@@ -115,18 +117,18 @@ export class MyComponent {
 ```ts
 // config.token.ts
 export interface IConfigToLib {
-    apiUrl: string;
+	apiUrl: string;
 
-    log(msg: string): void;
+	log(msg: string): void;
 }
 
 export const LIB_CONFIG = new InjectionToken<IConfigToLib>('LIB_CONFIG');
 ```
 
-| Поле | Тип | Назначение |
-|---|---|---|
-| `apiUrl` | `string` | базовый URL API, используемый библиотекой |
-| `log` | `(msg: string) => void` | функция логирования, передаваемая из приложения |
+| Поле     | Тип                     | Назначение                                      |
+|----------|-------------------------|-------------------------------------------------|
+| `apiUrl` | `string`                | базовый URL API, используемый библиотекой       |
+| `log`    | `(msg: string) => void` | функция логирования, передаваемая из приложения |
 
 `LIB_CONFIG` — это `InjectionToken`, по которому конфиг доступен в DI.
 
@@ -135,18 +137,19 @@ export const LIB_CONFIG = new InjectionToken<IConfigToLib>('LIB_CONFIG');
 ## Модуль библиотеки
 
 ```ts
+
 @NgModule({
-    declarations: [ToolConfigToLibAng15Component],
-    imports: [],
-    exports: [ToolConfigToLibAng15Component]
+	declarations: [ToolConfigToLibAng15Component],
+	imports: [],
+	exports: [ToolConfigToLibAng15Component]
 })
 export class ToolConfigToLibAng15Module {
-    static forRoot(config: IConfigToLib): ModuleWithProviders<ToolConfigToLibAng15Module> {
-        return {
-            ngModule: ToolConfigToLibAng15Module,
-            providers: [{ provide: LIB_CONFIG, useValue: config }]
-        };
-    }
+	static forRoot(config: IConfigToLib): ModuleWithProviders<ToolConfigToLibAng15Module> {
+		return {
+			ngModule: ToolConfigToLibAng15Module,
+			providers: [{provide: LIB_CONFIG, useValue: config}]
+		};
+	}
 }
 ```
 
@@ -159,21 +162,23 @@ export class ToolConfigToLibAng15Module {
 ## Сервис библиотеки
 
 ```ts
-@Injectable({ providedIn: 'root' })
+
+@Injectable({providedIn: 'root'})
 export class ToolConfigToLibAng15Service {
 
-    constructor(@Inject(LIB_CONFIG) private cfg: IConfigToLib) {}
+	constructor(@Inject(LIB_CONFIG) private cfg: IConfigToLib) {
+	}
 
-    public doSomething() {
-        this.cfg.log('called');
-        return this.cfg.apiUrl;
-    }
+	public doSomething() {
+		this.cfg.log('called');
+		return this.cfg.apiUrl;
+	}
 }
 ```
 
-| Метод | Возвращает | Описание |
-|---|---|---|
-| `doSomething()` | `string` | вызывает `cfg.log('called')` и возвращает `cfg.apiUrl` |
+| Метод           | Возвращает | Описание                                               |
+|-----------------|------------|--------------------------------------------------------|
+| `doSomething()` | `string`   | вызывает `cfg.log('called')` и возвращает `cfg.apiUrl` |
 
 Сервис доступен через DI из любой точки приложения после регистрации модуля с конфигом.
 
@@ -184,6 +189,7 @@ export class ToolConfigToLibAng15Service {
 `ToolConfigToLibAng15Component` объявлен и экспортирован модулем. После импорта модуля его можно использовать в шаблонах приложения:
 
 ```html
+
 <lib-tool-config-to-lib-ang15></lib-tool-config-to-lib-ang15>
 ```
 
